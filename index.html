@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>videojs-vr Demo</title>
+   <link href="dist/video-js.css" rel="stylesheet">
+   <link href="dist/videojs-vr.css" rel="stylesheet">
+<style>
+.player-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.player-wrapper .player .videojs-vr-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+</style>
+
+</head>
+<body>
+  <div class="player-wrapper">
+  <video muted autoplay width="960" height="540" id="videojs-vr-player" class="video-js vjs-default-skin" controls playsinline crossorigin="anonymous">
+          <!--
+    <source src="https://bintu-play.nanocosmos.de/h5live/http/stream.mp4/?url=rtmp://localhost/play&stream=HX26g-NRbx9" type="video/mp4">
+          -->  
+  </video>
+  <button id="internalCallButton">internal call</button>
+  <button id="externalCallButton">external call</button>
+  </div>
+  <script src="dist/video.js"></script>
+  <script src="dist/videojs-vr.js"></script>
+  <script src="dist/positionInterpreter.js"></script>
+  <script>
+
+  (function(window, videojs) {
+    const urlParams = new URLSearchParams(window.location.search);
+    let src = urlParams.get('src');
+    let stream = urlParams.get('stream');
+
+    var video = document.getElementById('videojs-vr-player');
+    var player = window.player = videojs('videojs-vr-player');
+
+    player.mediainfo = player.mediainfo || {};
+    player.mediainfo.projection = '360';
+
+    // AUTO is the default and looks at mediainfo
+    var vr = window.vr = player.vr({projection: 'AUTO', debug: true, forceCardboard: false});
+
+    if(src) {
+      src = decodeURI(src);
+    } else if(stream) {
+      if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        src = "https://bintu-play.nanocosmos.de/h5live/http/playlist.m3u8/?url=rtmp://localhost/play&stream="+stream;
+      } else {
+	src = "https://bintu-play.nanocosmos.de/h5live/http/stream.mp4/?url=rtmp://localhost/play&stream="+stream;
+      }
+    }
+    if(src) {
+      console.log("Loading src",src);
+      player.src({type: 'video/mp4', src: src});
+    }
+  }(window, window.videojs));
+  </script>
+</body>
+</html>
