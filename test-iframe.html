@@ -1,0 +1,52 @@
+<html>
+<head>
+  <style>
+    .iframe-wrapper {
+      position: relative; width: 100%; height: 0;
+      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    }
+    .iframe-wrapper iframe {
+      position: absolute; top: 0; left: 0; border: 0;
+      width: 100%; height: 100%;
+    }
+  </style>
+</head>
+<body>
+<h1>IFRAME Test</h1>
+<h2>IFRAME player only</h2>
+<hr>
+<div class="iframe-wrapper">
+<iframe id="player" width="960" height="540" allowfullscreen src="player.html?stream=BtFs6-TBGYw" title="videojs-vr iframe"></iframe>
+</div>
+
+<h2>IFRAME player with button below</h2>
+<div class="iframe-wrapper">
+<iframe id="player" width="960" height="540" allowfullscreen src="index.html?stream=BtFs6-TBGYw" title="videojs-vr iframe"></iframe>
+</div>
+<hr>
+
+<script>
+  const iframe = document.getElementById("player");
+  if(!iframe) {
+    console.log("iframe player not found");
+  } else {
+    iframe.onload = function() {
+      console.log("The iframe is loaded");
+    };
+    iframe.onerror = function() {
+      console.log("iframe error");
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    let src = urlParams.get('src');
+    let stream = urlParams.get('stream');
+    if(src) {
+      iframe.src = src;
+    } else if(stream) {
+      iframe.src = "https://demo1.nanocosmos.de/test/vjsvr/?stream="+stream;
+    }
+    iframe.width = "100%";
+    iframe.height = "100%";
+  }
+</script>
+
