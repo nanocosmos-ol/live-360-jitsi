@@ -65,7 +65,7 @@
     }
 
     let jitsiconf = urlParams.get('jitsiconf');
-    if(jitsiconf.length>0) {
+    if(jitsiconf && jitsiconf.length>0) {
       console.log("Setting jitsi conf",jitsiconf);
       callConfig = jitsiconf;
     }
