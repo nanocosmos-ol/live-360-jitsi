@@ -63,6 +63,13 @@
       console.log("Loading src",src);
       player.src({type: 'video/mp4', src: src});
     }
+
+    let jitsiconf = urlParams.get('jitsiconf');
+    if(jitsiconf.length>0) {
+      console.log("Setting jitsi conf",jitsiconf);
+      callConfig = jitsiconf;
+    }
+
   }(window, window.videojs));
   </script>
 </body>
