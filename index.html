@@ -65,9 +65,11 @@
     }
 
     let jitsiconf = urlParams.get('jitsiconf');
+    if(typeof jitsiconf !== "undefined") {
     if(jitsiconf && jitsiconf.length>0) {
       console.log("Setting jitsi conf",jitsiconf);
       callConfig = jitsiconf;
+    }
     }
 
   }(window, window.videojs));
