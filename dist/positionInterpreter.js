@@ -1,7 +1,11 @@
+// get the current position and call jitsi 
 //https://5f1x7j2.fe.hhi.de/t1#config.disableAP=true
 const internalCallUrl =  "https://5f1x7j2.fe.hhi.de";
 const externalCallUrl = "https://jitsi.iventic.com";
-const callConfig = "disableAP=true"
+
+// disable all audio processing or not? (can be configured by url)
+var callConfig = "disableAP=true"
+
 const nFields = 5; //how many fields
 const offset = -(Math.PI/nFields*4); //in radiant (0...2Pi). spherical rotation and orientation of stream probably don't match. Use offset to adjust fields
 const clockwise = true;
