@@ -54,9 +54,9 @@
       src = decodeURI(src);
     } else if(stream) {
       if (video.canPlayType('application/vnd.apple.mpegurl')) {
-        src = "https://bintu-play.nanocosmos.de/h5live/http/playlist.m3u8/?url=rtmp://localhost/play&stream="+stream;
+        src = "https://bintu-play.nanocosmos.de/h5live/http/playlist.m3u8?url=rtmp://localhost/play&stream="+stream;
       } else {
-	src = "https://bintu-play.nanocosmos.de/h5live/http/stream.mp4/?url=rtmp://localhost/play&stream="+stream;
+	src = "https://bintu-play.nanocosmos.de/h5live/http/stream.mp4?url=rtmp://localhost/play&stream="+stream;
       }
     }
     if(src) {
