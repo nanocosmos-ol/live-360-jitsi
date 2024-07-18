@@ -12,7 +12,11 @@ const clockwise = true;
 let sphericalOrientation = {phi:0, theta:0, radius:0};
 
 window.addEventListener("load", function () {
-    document.getElementById("externalCallButton").addEventListener("click", ()=>{window.open(generateUrl());});
+    document.getElementById("externalCallButton").addEventListener("click", ()=>{
+        const url=generateUrl();
+        console.log("Button clicked, opening ",url);
+        window.open(url);
+});
     document.getElementById("internalCallButton").addEventListener("click", ()=>{window.open(generateUrl({url:internalCallUrl}));});
 });
 
