@@ -18,6 +18,7 @@ function openUrl(options) {
 }
 
 function addButtonListeners() {
+    console.log("Adding button handlers");
     document.getElementById("externalCallButton").addEventListener("click", ()=>{openUrl()}); 
     document.getElementById("internalCallButton").addEventListener("click", ()=>{openUrl({url:internalCallUrl});});
 }
