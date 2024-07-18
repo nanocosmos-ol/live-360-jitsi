@@ -11,14 +11,20 @@ const offset = -(Math.PI/nFields*4); //in radiant (0...2Pi). spherical rotation 
 const clockwise = true;
 let sphericalOrientation = {phi:0, theta:0, radius:0};
 
-window.addEventListener("load", function () {
-    document.getElementById("externalCallButton").addEventListener("click", ()=>{
-        const url=generateUrl();
+function openUrl(options) {
+        const url=generateUrl(options);
         console.log("Button clicked, opening ",url);
         window.open(url);
-});
-    document.getElementById("internalCallButton").addEventListener("click", ()=>{window.open(generateUrl({url:internalCallUrl}));});
-});
+}
+
+function addButtonListeners() {
+    document.getElementById("externalCallButton").addEventListener("click", ()=>{openUrl()}); 
+    document.getElementById("internalCallButton").addEventListener("click", ()=>{openUrl({url:internalCallUrl});});
+}
+
+document.addEventListener('DOMContentLoaded', function () { addButtonListeners(); }, false);
+
+window.addEventListener("load", function () { addButtonListeners(); });
 
 //The modified videojs-vr.js dispatches an event every time (TM) the viewer changes its direction of view
 //The event contains the new view direction formated like sphericalOrientation.
